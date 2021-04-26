@@ -1,8 +1,15 @@
 <html>
-<head>
-<title>Martian</title>
-</head>
-<body>
-<h1>Hello Martian</h1>
-</body>
+    <head>
+        <title>Martian</title>
+        <script src="wasm/wasm_exec.js"></script>
+        <script>
+            const go = new Go();
+            WebAssembly.instantiateStreaming(fetch("wasm/lib.wasm"), go.importObject).then((result) => {
+                go.run(result.instance);
+            });
+        </script>
+    </head>
+    <body>
+    <h1>Hello Martian</h1>
+    </body>
 </html>
